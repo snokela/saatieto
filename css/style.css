@@ -1,20 +1,23 @@
 
 html, body {
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
     padding: 0;
 }
 
 aside {
-    background-color: green;
+    background-color: white;
 }
 
+output {
+    color: red;
+}
 
 /* TYYLIT */
 
 /* headerin tyylit */
 header {
-    background-color: #f5f5f5;
+    background-color: whitesmoke;
     height: 100px;
 }
 
@@ -27,4 +30,11 @@ header {
 
 footer {
     height: 150px;
+    background-color: whitesmoke;
 }
+
+/* navin tyylit */
+nav {
+    background-color: #f5f5f5;
+}
+
