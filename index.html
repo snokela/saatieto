@@ -7,8 +7,8 @@
   <link href="./css/style.css" rel="stylesheet">
   <title>SääTieto</title>
 </head>
-<body class="d-flex flex-column min-vh-100">
-  <!-- <div class="flex-shrink-0">  -->
+<body class="d-flex flex-column min-vh-100 container-fluid">
+  <!-- <div class="container-fluid flex-shrink-0">  -->
     <div class="sticky-top">
       <header>
         <div class="pt-3 text-center">
@@ -44,26 +44,31 @@
       <div class="row">
         <div class="col-md-8">
           <div class="container-fluid">
-            <h3 class="text-center mt-4">Tervetuloa SääTieto-sivustolle!</h3>
-            <div class="text text-align mt-4">
-              <p>SääTieto-sivustolla saat nopeasti ja helposti tuoreimmat tiedot tämän hetken
+            <h3 class="text-center mt-4">Tervetuloa SääTietoon!</h3>
+            <div class="text text-center mt-4">
+              <p>Tervetuloa SääTietoon – luotettavaan ja kattavaan säätietopalveluun, joka tarjoaa sinulle nopeasti ja helposti ajantasaista tietoa päivän säätiedoista missä tahansa Suomen kolkassa. Olemme sitoutuneet varmistamaan, että pysyt ajan tasalla säästä riippumatta siitä, missä liikutkin. Sää vaikuttaa monin tavoin päivittäiseen elämäämme, olipa kyseessä sitten suunnitelmat ulkoiluun, matkustamiseen tai yksinkertaisesti arjen suunnitteluun – ja juuri siksi tarjoamme kattavat ja luotettavat säätiedot kaikille tarpeillesi.</p>
+              <!-- <p>SääTieto-sivustolla saat nopeasti ja helposti tuoreimmat tiedot tämän hetken
               kotimaan säätiedoista paikkakunnittain. Etsitkö päivän sääennustetta Oulussa tai Helsingissä? Syötä haluamasi paikkakunta ja 
-              tarjoamme sinulle reaaliaikaisen ja selkeän sääraportin kyseiseltä paikkakunnalta.</p>
+              tarjoamme sinulle reaaliaikaisen ja selkeän sääraportin kyseiseltä paikkakunnalta.</p> -->
               <p> SääTieto-sivusto on luotettava kumppanisi, 
               kun haluat olla ajan tasalla säästä missä tahansa ja milloin tahansa. Älä anna sään yllättää, 
               hanki tietoa SääTiedon avulla! Hae helposti ja nopeasti juuri sen hetken sääennuste, olitpa missä 
               tahansa. Luotettavaa säätietoa, kun tarvitset sitä yhdellä silmäyksellä!</p>
             </div>
             <div>
-              <form>
-                <h4>Minkä paikkakunnan sää haetaan?</h4>
-                <div class="row mt-4">
-                  <label for="paikkakunta" class="col-md-2 col-form-label">Paikkakunta</label>
-                  <div class="col-md-6">
-                    <input type="paikkakunta" class="form-control" id="paikkakunta" placeholder="Kirjoita paikkakunta tähän"/>
-                  </div>
+              <form class="row g-3 mt-3">
+                <h4 class="mb-3">Minkä paikkakunnan sää haetaan?</h4>
+                <div class="col-auto">
+                  <label for="place" class="visually-hidden">Paikkakunta</label>
+                  <input type="text" readonly class="form-control-plaintext" id="place" value="Paikkakunta">
                 </div>
-                <button type="button" class="btn btn-secondary mt-3 mb-3">Hae</button>
+                <div class="col-auto">
+                  <label for="inputplace" class="visually-hidden">Oulu</label>
+                  <input type="text" class="form-control" id="inputplace" placeholder="Oulu">
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-secondary mb-3">Hae</button>
+                </div>
               </form>
               <div class="row mt-4">
                 <output class=" col-md-4 mt-3 mb-3">Lämpötila</output>
