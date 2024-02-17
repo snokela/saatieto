@@ -38,9 +38,7 @@ const hideWeatherLabels = () => {
   hideElements.forEach(element => {
     if (element.classList.contains('d-inline')) {
       element.classList.replace('d-inline', 'd-none')
-    } else {
-      element.classList.replace('d-none', 'd-inline')
-    }
+    } 
   })
 };
 
@@ -63,15 +61,21 @@ const windElement = document.querySelector('#wind-output')
 
 button.addEventListener('click', async () => {
   const input = document.querySelector('#inputplace').value
-  const coordinates = await getCoordinatesForPlace(input)
-  const weatherData = await getWeatherForCoordinates(coordinates.lat, coordinates.lon)
-
-  //jos säätietoja ei saatu haettua, tyhjennetään säätietokentät ja lopetetaan funktion suorittaminen
-  if (weatherData === null) {
+  if (input === "") {
     temperatureElement.innerHTML = ''
     windElement.innerHTML = ''
     return
   }
+  const coordinates = await getCoordinatesForPlace(input)
+  const weatherData = await getWeatherForCoordinates(coordinates.lat, coordinates.lon)
+
+  //jos säätietoja ei saatu haettua, tyhjennetään säätietokentät ja lopetetaan funktion suorittaminen
+  if (!weatherData) {
+    temperatureElement.innerHTML = ''
+    windElement.innerHTML = ''
+    return
+  }
+
   //kutsutaan funktiota showWeatherLabels
   showWeatherLabels()
 
@@ -127,6 +131,7 @@ for (const location of allWeatherData) {
 
 //https://www.w3schools.com/jsref/jsref_touppercase.asp
 //https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/
+//ennen käyttöliittymään siirtämistä, muutetaan paikkakunnan alkukirjain isoksi
 const warmestLocationPlace = document.querySelector('#warmest-place')
 warmestLocationPlace.innerHTML = warmestLocation[0].charAt(0).toUpperCase() + warmestLocation[0].slice(1)
 const warmestLocationTemperatureElement = document.querySelector('#warmest-temperature')
