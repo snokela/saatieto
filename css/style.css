@@ -9,9 +9,10 @@ aside {
     background-color: white;
 }
 
-output {
-    color: red;
-}
+/* output {
+    font-weight: bold;
+} */
+
 
 /* TYYLIT */
 
@@ -47,6 +48,10 @@ nav {
 /* etusin hae napin muokkaus */
 #button {
     background-color: #4C7893;
+}
+
+.text-bold {
+   font-weight: bold;
 }
 
 /* etusivun aside lämpimin ja kylmin divit */
