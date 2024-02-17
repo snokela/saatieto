@@ -42,16 +42,16 @@ nav {
 /* etusivun kuvan muotoilu */
 
 .front-img {
-    max-width: 80%;
+    max-width: 100%;
+}
+
+.europe-img {
+    width: 80%;
 }
 
 /* etusin hae napin muokkaus */
 #button {
     background-color: #4C7893;
-}
-
-.text-bold {
-   font-weight: bold;
 }
 
 /* etusivun aside lämpimin ja kylmin divit */
