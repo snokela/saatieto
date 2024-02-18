@@ -80,12 +80,17 @@ button.addEventListener('click', async () => {
   //kutsutaan funktiota showWeatherLabels
   showWeatherLabels()
 
+  //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi ennen tallenusta
+  const upperInput =  input.charAt(0).toUpperCase() + input.slice(1)
+
   temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
   windElement.innerHTML = weatherData.wind + "m/s"
-  nameElement.innerHTML = "Sää paikassa " + coordinates.name + ":"
+  nameElement.innerHTML = "Sää paikassa " + upperInput + ":"
 
+  // //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi ennen tallenusta
+  // const upperInput =  input.charAt(0).toUpperCase() + input.slice(1)
   //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi
-  saveLocationToLocalStorage(coordinates.name)
+  saveLocationToLocalStorage(upperInput)
 });
 
 //funktio joka tallentaa localstorageen paikannimen (max.4kpl ja tarkistaa että tätä ei vielä löydy sieltä)
@@ -102,11 +107,21 @@ const saveLocationToLocalStorage = (locationName) => {
   console.log(localStorage.getItem("savedLocations"))
 };
 
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+//funktio joka näyttää localstorageen tallennetun tiedon
+const showLocalStorageHistory = () => {
+  const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
+  const locations = savedLocations.join(', ')
+  const historyElement = document.querySelector('#weather-history')
+  historyElement.innerHTML = locations;
+};
+
 //https://www.w3schools.com/js/js_loop_forof.asp
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
 // kuunnellaan domcontetloaded eventia ja käydään läpi kaikki ennaltamääritellyt paikat ja kaupungit
-// haetaan myös syötetylle paikkakunnalle lämpötila ja tuulisuus 
-document.addEventListener("DOMContentLoaded", async (event) => {
+// haetaan myös syötetylle paikkakunnalle lämpötila ja tuulisuus
+// DOMContentLoaded = kun sivu on valmis
+document.addEventListener("DOMContentLoaded", async () => {
   const allWeatherData = []
   for (const value of predefinedWeatherLocations) {
     const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
@@ -126,26 +141,26 @@ const warmestLocation = ["", ""]
 const coldestLocation = ["", ""]
 
 //etsitään lämpimin ja kylmin paikkakunta sekä lämpötilat
-for (const location of allWeatherData) {
-  if (warmestLocation[0] === "")  {
-    warmestLocation[0] = location.name
-    warmestLocation[1] = location.temperature
-  } else {
-    if (location.temperature > warmestLocation[1]) {
+  for (const location of allWeatherData) {
+    if (warmestLocation[0] === "")  {
       warmestLocation[0] = location.name
       warmestLocation[1] = location.temperature
+    } else {
+      if (location.temperature > warmestLocation[1]) {
+        warmestLocation[0] = location.name
+        warmestLocation[1] = location.temperature
+      }
     }
-  }
-  if (coldestLocation[0] === "")  {
-    coldestLocation[0] = location.name
-    coldestLocation[1] = location.temperature
-  } else {
-    if (location.temperature < coldestLocation[1]) {
+    if (coldestLocation[0] === "")  {
       coldestLocation[0] = location.name
       coldestLocation[1] = location.temperature
+    } else {
+      if (location.temperature < coldestLocation[1]) {
+        coldestLocation[0] = location.name
+        coldestLocation[1] = location.temperature
+      }
     }
-  }
-};
+  };
 
 //https://www.w3schools.com/jsref/jsref_touppercase.asp
 //https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/
@@ -159,6 +174,9 @@ const coldestLocationPlace = document.querySelector('#coldest-place')
 coldestLocationPlace.innerHTML = coldestLocation[0].charAt(0).toUpperCase() + coldestLocation[0].slice(1)
 const coldestLocationTemperatureElement = document.querySelector('#coldest-temperature')
 coldestLocationTemperatureElement.innerHTML = coldestLocation[1] + "&deg;C"
+
+//kutsutaan localStorageHistory -funktiot, joka näyttää viimeisimmät localstorageeen tallennetut paikkakunnat
+showLocalStorageHistory()
 });
 
 
