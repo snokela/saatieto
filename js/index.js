@@ -93,18 +93,20 @@ button.addEventListener('click', async () => {
   saveLocationToLocalStorage(upperInput)
 });
 
-//funktio joka tallentaa localstorageen paikannimen (max.4kpl ja tarkistaa että tätä ei vielä löydy sieltä)
+//funktio joka tallentaa localstorageen paikannimen (max.5kpl ja tarkistaa että tätä ei vielä löydy sieltä)
 const saveLocationToLocalStorage = (locationName) => {
   const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
   if (!savedLocations.includes(locationName)){
     savedLocations.push(locationName)
   }   
-  if (savedLocations.length > 4) {
+  if (savedLocations.length > 5) {
     savedLocations.shift()
     }
   //tallennetaan päivitetty lista LocalStorageen
   localStorage.setItem("savedLocations", JSON.stringify(savedLocations))
   console.log(localStorage.getItem("savedLocations"))
+  //kutsutaan funktiota, joka näyttää localstorage historyn käyttöliittymässä
+  showLocalStorageHistory()
 };
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
