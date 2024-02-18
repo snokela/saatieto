@@ -9,11 +9,6 @@ aside {
     background-color: white;
 }
 
-/* output {
-    font-weight: bold;
-} */
-
-
 /* TYYLIT */
 
 /* headerin tyylit */
@@ -42,7 +37,7 @@ nav {
 /* etusivun kuvan muotoilu */
 
 .front-img {
-    max-width: 100%;
+    max-width: 70%;
 }
 
 .europe-img {
@@ -62,4 +57,10 @@ nav {
 
 .coldest-place-color {
     background-color: #CDDEE3;
+}
+
+/* sää-paikassa -tekstin tyylit */
+
+.place-weather-text {
+    
 }

@@ -36,6 +36,7 @@ const getCoordinatesForPlace = async (place) => {
 
   return {
     lat: jsonResponse.results[0].latitude,
-    lon: jsonResponse.results[0].longitude
+    lon: jsonResponse.results[0].longitude,
+    name: jsonResponse.results[0].name  //"name": "Raahe"
   }
 };

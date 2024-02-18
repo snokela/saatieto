@@ -58,6 +58,7 @@ clearButton.addEventListener('click', () => {
 const button = document.querySelector('#button')
 const temperatureElement = document.querySelector('#temperature-output')
 const windElement = document.querySelector('#wind-output')
+const nameElement = document.querySelector('#place-weather-text')
 
 button.addEventListener('click', async () => {
   const input = document.querySelector('#inputplace').value
@@ -81,8 +82,25 @@ button.addEventListener('click', async () => {
 
   temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
   windElement.innerHTML = weatherData.wind + "m/s"
+  nameElement.innerHTML = "Sää paikassa " + coordinates.name + ":"
+
+  //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi
+  saveLocationToLocalStorage(coordinates.name)
 });
 
+//funktio joka tallentaa localstorageen paikannimen (max.4kpl ja tarkistaa että tätä ei vielä löydy sieltä)
+const saveLocationToLocalStorage = (locationName) => {
+  const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
+  if (!savedLocations.includes(locationName)){
+    savedLocations.push(locationName)
+  }   
+  if (savedLocations.length > 4) {
+    savedLocations.shift()
+    }
+  //tallennetaan päivitetty lista LocalStorageen
+  localStorage.setItem("savedLocations", JSON.stringify(savedLocations))
+  console.log(localStorage.getItem("savedLocations"))
+};
 
 //https://www.w3schools.com/js/js_loop_forof.asp
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
@@ -142,4 +160,8 @@ coldestLocationPlace.innerHTML = coldestLocation[0].charAt(0).toUpperCase() + co
 const coldestLocationTemperatureElement = document.querySelector('#coldest-temperature')
 coldestLocationTemperatureElement.innerHTML = coldestLocation[1] + "&deg;C"
 });
+
+
+
+
 

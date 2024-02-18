@@ -70,6 +70,22 @@
                   <button id="clear-button" type="button" class="btn btn-light mb-3">Tyhjennä</button>
                 </div>
               </form>
+              <div class="mb-4">
+                <div>
+                  <span id="place-weather-text" class="weather-label fw-bold d-none"></span>
+                </div>
+                <di>
+                  <span class="weather-label fw-bold d-none">Lämpötila</span> 
+                  <span id="temperature-output"></span>
+                </di>
+                <div>
+                  <span class="weather-label fw-bold d-none">Tuulisuus</span> 
+                  <span id="wind-output"></span>
+                </div>
+              </div>
+              <!-- <div>
+                <span id="place-weather-text" class="weather-label fw-bold d-none"></span>
+              </div>
               <div class="container overflow-hidden">
                   <div class="col-3">
                     <div>
@@ -87,13 +103,23 @@
                       </output>
                     </div>
                   </div>
-              </div>
+              </div> -->
             </div>
+            <div class="some-other-content">
+              <!-- Tässä voit lisätä LocalStorageen tallennettuja tietoja -->
+              <div>
+                <p>Viimeksi haetut paikkakunnat:</p>
+                <span id="tallennettu_tieto1">KOKKOLA</span>
+                <span id="tallennettu_tieto2">RAAHE</span>
+                <span id="tallennettu_tieto3">OULU</span>
+                <span id="tallennettu_tieto4">KALAJOKI</span>
+              </div>
+          </div>
             <div class="container">
               <div class="row">
                 <div class="col">
-                  <div class="pt-5 pb-5 d-flex justify-content-center">
-                    <img src="./img/front-img.jpg" class="front-img rounded-circle" alt="etusivun kuva">
+                  <div class="pt-5 pb-5 d-flex justify-content-center">  
+                     <img src="./img/front-img.jpg" class="front-img rounded-circle" alt="etusivun kuva">
                   </div>
                 </div>
               </div>
