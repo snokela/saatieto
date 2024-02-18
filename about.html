@@ -9,185 +9,106 @@
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
   <div class="sticky-top">
-      <header>
-        <div class="pt-3 text-center">
-          <div>
-            <h1 class="header-title">SääTieto</h1>
-          </div>
-          <div>
-            <p>Päivän ennusteet yhdellä silmäyksellä!</p>
-          </div>
+    <header>
+      <div class="pt-3 text-center">
+        <div>
+          <h1 class="header-title">SääTieto</h1>
         </div>
-      </header>
-      <nav class="navbar navbar-expand-md">
-            <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainmenu"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-          <div class="collapse navbar-collapse " id="mainmenu">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active"  href="./index.html">ETUSIVU</a></li>
-              <li class="nav-item"><a class="nav-link" href="./european-weather.html">EUROOPAN SÄÄ</a></li>
-              <li class="nav-item"><a class="nav-link" href="./about.html">TIETOA</a></li>
-            </ul>
-          </div>
-      </nav>
-    </div>
-        <!-- <div class=" flex-shrink-0">
-      <div class="row">
-        <div class="col-md-8">
-          <article class="container-fluid">
-            <h3 class="mt-4">Tervetuloa SääTietoon!</h3>
-            <div class="mt-4">
-              <p>Tervetuloa SääTietoon – luotettavaan ja kattavaan säätietopalveluun, joka tarjoaa sinulle nopeasti 
-                ja helposti ajantasaista tietoa päivän säätiedoista missä tahansa Suomen kolkassa. Olemme 
-                sitoutuneet varmistamaan, että pysyt ajan tasalla säästä riippumatta siitä, missä liikutkin. Sää 
-                vaikuttaa monin tavoin päivittäiseen elämäämme, olipa kyseessä sitten suunnitelmat ulkoiluun, 
-                matkustamiseen tai yksinkertaisesti arjen suunnitteluun – ja juuri siksi tarjoamme yksinkertaiset ja 
-                luotettavat säätiedot kaikille tarpeillesi.
-              </p>
-              <p> SääTieto-sivusto on luotettava kumppanisi, 
-              kun haluat olla ajan tasalla säästä missä tahansa ja milloin tahansa. Älä anna sään yllättää, 
-              hanki tietoa SääTiedon avulla! Hae helposti ja nopeasti juuri sen hetken sääennuste, olitpa missä 
-              tahansa. Luotettavaa säätietoa, kun tarvitset sitä yhdellä silmäyksellä!
-              </p>
-            </div>
-            <div>
-              <form class="row g-3 mt-3">
-                <h4 class="mb-3">Minkä paikkakunnan sää haetaan?</h4>
-                <div class="col-auto">
-                  <label for="inputplace" class="visually-hidden">Kirjoita paikkakunta</label>
-                  <input type="text" class="form-control" id="inputplace" placeholder="Kirjoita paikkakunta">
-                </div>
-                <div class="col-auto">
-                  <button id="button" type="button" class="btn btn-secondary mb-3">Hae</button>
-                </div>
-                <div class="col-auto">
-                  <button id="clear-button" type="button" class="btn btn-light mb-3">Tyhjennä</button>
-                </div>
-              </form>
-              <div class="mb-4">
-                <div>
-                  <span id="place-weather-text" class="weather-label fw-bold d-none"></span>
-                </div>
-                <di>
-                  <span class="weather-label fw-bold d-none">Lämpötila</span> 
-                  <span id="temperature-output"></span>
-                </di>
-                <div>
-                  <span class="weather-label fw-bold d-none">Tuulisuus</span> 
-                  <span id="wind-output"></span>
-                </div>
-              </div>
-            </div>
-            <div id="localStorageHistory" >
-
-              <div class="fst-italic">
-                <p>Viimeksi haettuja paikkakuntia:</p>
-                <span id="weather-history"></span>
-              </div>
-          </div>
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <div class="pt-5 pb-5 d-flex justify-content-center">  
-                     <img src="./img/front-img.jpg" class="front-img rounded-circle" alt="etusivun kuva">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="col-md-4">
-          <aside>
-            <h3 class="mt-4 mb-5">Paikkakuntakohtainen sää</h3>
-            <div class="container overflow-hidden">
-              <div class="row gy-5">
-                <div class="col-4">
-                  <h6 class="p-3">Paikkakunta</h6>
-                </div>
-                <div class="col-4">
-                  <h6 class="p-3">Lämpötila &deg;C<h6>
-                </div>
-                <div class="col-4">
-                  <h6 class="p-3">Tuuli m/s</h6>
-                </div>
-                <div class="col-4">
-                  <div class="place-rovaniemi p-3">Rovaniemi</div>
-                </div>
-                <div class="col-4">
-                  <div id="temperature-rovaniemi" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div id="wind-rovaniemi" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div class="place-oulu p-3">Oulu</div>
-                </div>
-                <div class="col-4">
-                  <div id="temperature-oulu" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div id="wind-oulu" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div class="place-jyvaskyla p-3">Jyväskylä</div>
-                </div>
-                <div class="col-4">
-                  <div id="temperature-jyvaskyla" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div id="wind-jyvaskyla" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div id="place-helsinki " class="p-3">Helsinki</div>
-                </div>
-                <div class="col-4">
-                  <div id="temperature-helsinki" class="p-3">Ladataan...</div>
-                </div>
-                <div class="col-4">
-                  <div id="wind-helsinki" class="p-3">TLadataan...</div>
-                </div>
-              </div>
-            </div>
-            <div class="container  mt-5 mb-4">
-              <div class="row g-2">
-                <h5>Lämpimintä paikkakunnalla:</h5>
-                <div class=" col-6">
-                  <h6 class="p-3">Paikkakunta</h6>
-                </div>
-                <div class="col-6">
-                  <h6 class="p-3">Lämpötila<h6>
-                </div>
-                <div class="warmest-place-color col-6">
-                  <div id="warmest-place" class="p-3">PAIKKAKUNTA</div>
-                </div>
-                <div class="warmest-place-color col-6">
-                  <div id="warmest-temperature" class="p-3">LÄMPÖTILA</div>
-                </div>
-                <h5 class="mt-4">Kylmintä paikkakunnalla:</h5>
-                <div class=" col-6">
-                  <h6 class="p-3">Paikkakunta</h6>
-                </div>
-                <div class="col-6">
-                  <h6 class="p-3">Lämpötila<h6>
-                </div>
-                <div class="coldest-place-color col-6">
-                  <div id="coldest-place" class="p-3">PAIKKAKUNTA</div>
-                </div>
-                <div class="coldest-place-color col-6">
-                  <div id="coldest-temperature" class="p-3">LÄMPÖTILA</div>
-                </div>
-              </div>
-            </div>
-          </aside>
+        <div>
+          <p>Päivän ennusteet yhdellä silmäyksellä!</p>
         </div>
       </div>
-    </div> -->
+    </header>
+    <nav class="navbar navbar-expand-md">
+          <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mainmenu"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse " id="mainmenu">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active"  href="./index.html">ETUSIVU</a></li>
+            <li class="nav-item"><a class="nav-link" href="./european-weather.html">EUROOPAN SÄÄ</a></li>
+            <li class="nav-item"><a class="nav-link" href="./about.html">TIETOA</a></li>
+          </ul>
+        </div>
+    </nav>
+  </div>
+  <div class="mt-3">
+    <div>
+      <h5>Sivuston taustaa</h5>
+      <p>Tämä SääTieto-sivusto on toteutettu Oulun ammattikorkeakoulun Web-ohjelmointi -kurssin loppuharjoituksena keväällä 2024.
+        Nimi ja sivusto on itse keksitty ja kehitetty. Tämän sivuston ensisijainen tarkoitus oli oppia ja kehittää
+        omaa JavaScript -osaamista, joten tämän sivuston toteutus on suurimmalta osin painottunut varsinaiseen
+        toiminnallisuuteen. 
+      </p>
+    </div>
+    <div>
+      <h5>Tekninen toteutus</h5>
+      <p>Sivusto on toteutettu HTML5:llä, CSS:llä ja JavaScriptillä. Sivuston responsiivisuus ja tyylit on toteutettu pääsääntöisesti Bootstrap frameworkillä. Tämä
+        framework oli itselleni ihan uusi tuttavuus ennen tätä kurssia, joten halusin tässä kohtaa testata ja harjoitella tämän 
+        käyttöä myös tällä sivustolla. Sivuston toiminnallisuus, kuten hakutoiminnot, on toteutettu 
+        niin ikään itselleni uudella kielellä, JavaScriptillä.
+      </p>
+    </div>
+    <div>
+      <h5>Sisältö ja ominaisuudet</h5>
+      <p>Sivustolta löytyy kolme eri sivua: etusivu, euroopan sää ja tietoa. Etusivu on sivuston pääsivu jossa on lyhyt esittely SääTieto-sivustosta. 
+        Tältä sivulta löytyy haku-toiminto, mistä voi paikkakunnan nimen hakukenttään kirjoittamalla hakea kyseisen
+        paikkakunnan tämän hetkisen lämpötilan ja tuulisuuden. Hakutoiminto toimii Hae-nappia painamalla, jolloi hakutoiminnonn alla 
+        näytetään haetun paikkakunnan sää. Tyhjennä-nappia painamalla saadaan hakukenttä tyhjennettyä. Säätieto haetaan avoimesta rajapinnasta
+        (<a href="https://open-meteo.com/" class="link-secondary">https://open-meteo.com/</a>). Lisäksi etusivulla näytetään neljän Suomen 
+        kaupungin tämänhetkiset säätiedot. Nämä tiedot haetaan aina automaattisesti,kun sivu ladataan. Näistä neljästä 
+        paikkakunnista näytetään lisäksi lämpimin ja kylmin paikkakunta. 
+        Ensimmäisellä sivulla on myös listattuna viimeksi haettuja paikkakuntia rajattuna näyttö viiteen
+        eri paikkakuntaan. Mikäli hakee samaa paikkakuntaa viisi kertaa peräkkäin, näytetään tämä vain yhden kerran. 
+        Tämä tieto on tallennettu LocalStorageen. Sivulle on lisätty myös ChatGPT:n (<a href="https://chat.openai.com/" class="link-secondary">https://chat.openai.com/</a>)
+        generoima SääTieto-sivuston aiheeseen liittyvä kuva.
+      </p>
+      <p>Euroopan sää -sivulla kerrotaa lyhyesti sivustosta ja lisäksi sivulta löytyy myös ChatGPT:n (<a href="https://chat.openai.com/" class="link-secondary">https://chat.openai.com/</a>)
+        generoima SääTieto-sivuston Euroopan sää -aiheeseen liittyvä kuva. SääTieto sivulla on listattuna seitsemän 
+        Euroopan kaupungin lämpötila ja tuulisuus. Nämä tiedot haetaan aina automaattisesti avoimesta
+        rajapinnasta (<a href="https://open-meteo.com/" class="link-secondary" class="link-secondary">https://open-meteo.com/</a>), kun sivu ladataan.
+      </p>
+      <p>Tällä Tietoa-sivulla kerrotaan lyhyesti sivuston taustasta, toteutuksesta ja ominaisuuksista. Tämän sivun lopppuun on
+        myös koottu mahdollisimman kattavasti sivuston kehittämisessä ja toteuttamisessa hyödynnettyjä lähdetietoja, mitä ilman
+        tämä ivusto ei olisi varmasti koskaan valmistunut.
+      </p>
+    </div>
+    <div>
+      <h5>Suunnittelu ja jatkokehitysideat</h5>
+      <p>Sivuston suunnitteluun ja ulkoasuun ei tällä sivustolla ole niin hirveästi panostettu, vaan kuten aikaisemmin
+        mainitsin, sivustolla painotetaan toiminnallisuutta. Sivuston ulkoasussa olisi paljon kehitettävää ennen virallista
+        julkaisemista. Sivusto on rakentunut nyt pala palalta ja näkisin, että selkeä suunnitelma alussa koko sivustosta 
+        ja ulkoasusta olisivat mahdollistaneet hienomman ulkoasun. Mielessäni oli useita toiminnallisuuksia mitä olisin
+        halunnut sivustolle vielä lisätä, mutta nämä jää jatkokehitysiedoiksi. Muutaman näistä mainitakseni: LocalStorageen
+        tallennettuja paikkakuntia käyttöliittymässä klikkaamalla näytetään ko. paikkakunnan säätiedot sekä etusivulla ja Euroopan sää -sivulla 
+        olevat säätiedot päivitettäisiin tietyn väliajoin, mikäli sivu on pitkän aikaa auki. Myös muita toimintoja 
+        nousi mieleen, mutta näitä jatkokehitysideoita päivittelen sivustolle myöhemmin.
+      </p>
+    </div>
+    <div>
+      <h5>Lähteitä:</h5>
+      <ul>
+        <li><a href="https://open-meteo.com/" class="link-secondary">https://open-meteo.com/</a></li>
+        <li><a href="https://chat.openai.com/" class="link-secondary">https://chat.openai.com/</a></li>
+        <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" class="link-secondary">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></li>
+        <li><a href="https://getbootstrap.com/docs/5.3/layout/grid/" class="link-secondary">https://getbootstrap.com/docs/5.3/layout/grid/</a></li>        
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></li>
+        <li><a href="https://appro.mit.jyu.fi/tiea2120/luennot/javascript_basics/#TOC22" class="link-secondary">https://appro.mit.jyu.fi/tiea2120/luennot/javascript_basics/#TOC22</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event</a></li>
+        <li><a href="https://www.w3schools.com/js/js_loop_forof.asp" class="link-secondary">https://www.w3schools.com/js/js_loop_forof.asp</a></li>
+        <li><a href="https://www.w3schools.com/" class="link-secondary">https://www.w3schools.com/</a></li>
+        <li><a href="https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/" class="link-secondary">https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/</a></li>
+        <li><a href="https://javascript.info/" class="link-secondary">https://javascript.info/</a></li>
+        <!-- <li><a href="##" class="link-secondary">Lähde 3</a></li> -->
+      </ul>
+    </div>
+  </div>
   <footer class="footer mt-auto">
     <div class="container-fluid text-center">    
       <h5 class="mt-4">SääTieto</h5>
@@ -196,7 +117,7 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/functions.js"></script>
-  <script src="js/index.js"></script>
+  <!-- <script src="js/functions.js"></script>
+  <script src="js/index.js"></script> -->
 </body>
 </html>

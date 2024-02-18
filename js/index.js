@@ -24,7 +24,6 @@ const predefinedWeatherLocations = [
 ];
 
 //tehdään oma funktio joka näyttää säätietokenttien nimet
-//https://getbootstrap.com/docs/5.0/utilities/text/
 const showWeatherLabels = () => {
   const elements = document.querySelectorAll('span.weather-label')
   elements.forEach(element => {
@@ -87,8 +86,6 @@ button.addEventListener('click', async () => {
   windElement.innerHTML = weatherData.wind + "m/s"
   nameElement.innerHTML = "Sää paikassa " + upperInput + ":"
 
-  // //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi ennen tallenusta
-  // const upperInput =  input.charAt(0).toUpperCase() + input.slice(1)
   //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi
   saveLocationToLocalStorage(upperInput)
 });
