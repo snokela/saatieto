@@ -20,14 +20,16 @@ const getWeatherForCoordinates = async (lat, lon) => {
 
 //funktio, joka hakee paikkakunnan koordinaatit ja palauttaa lat ja long
 const getCoordinatesForPlace = async (place) => {
-  const apiURL = "https://geocoding-api.open-meteo.com/v1/search?name=" + place + "&count=10&language=en&format=json"
+  const apiURL = "https://geocoding-api.open-meteo.com/v1/search?name=" + place + ",Finland&count=10&language=en&format=json"
   const response = await fetch(apiURL)
   const jsonResponse = await response.json()
+  console.log(jsonResponse)
   // console.log(jsonResponse)
 
 //jos syötetään siansaksaa > konsolissa virhe > tehdään virheentarkistusta  
-//jos apilta ei saada vastausta, palautetaan koordinaateiksi nolla
-  if (jsonResponse && jsonResponse.results === undefined) {
+//jos apilta ei saada vastausta, palautetaan koordinaateiksi nolla ja nolla. koordinaatit 0 ja 0 paikassa ei 
+//ole mitään kaupunkia, vaikka koordinaatti on oikea.
+  if (!jsonResponse || (jsonResponse && !jsonResponse.results)) {
     return {
       lat: 0,
       lon: 0

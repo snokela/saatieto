@@ -61,12 +61,19 @@ const nameElement = document.querySelector('#place-weather-text')
 
 button.addEventListener('click', async () => {
   const input = document.querySelector('#inputplace').value
-  if (input === "") {
+  if (input === '') {
     temperatureElement.innerHTML = ''
     windElement.innerHTML = ''
     return
   }
+  //tässä tapauksessa oletataan, että koordinaatit lat.0 ja lon.0 ei ole oikeita, koska tässä koordinaatissa ei 
+  //kaupunkia
   const coordinates = await getCoordinatesForPlace(input)
+  if  (coordinates.lat === 0 && coordinates.lon === 0) {
+    alert('Annetulle paikkakunnalle ei löytynyt säätietoja!')
+    return
+  }
+
   const weatherData = await getWeatherForCoordinates(coordinates.lat, coordinates.lon)
 
   //jos säätietoja ei saatu haettua, tyhjennetään säätietokentät ja lopetetaan funktion suorittaminen
