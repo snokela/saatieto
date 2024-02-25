@@ -23,7 +23,7 @@ const predefinedWeatherLocations = [
   }
 ];
 
-//tehdään oma funktio joka näyttää säätietokenttien nimet
+//funktio, joka näyttää säätietokentät (lämpötila, tuulisuus) 
 const showWeatherLabels = () => {
   const elements = document.querySelectorAll('span.weather-label')
   elements.forEach(element => {
@@ -31,7 +31,7 @@ const showWeatherLabels = () => {
   })
 };
 
-//tehdään funktio joka poistaa säätietokenttien nimet näkyvistä
+//funktio, joka piilottaa säätietokenttien nimet (lämpötila, tuulisuus)
 const hideWeatherLabels = () => {
   const hideElements = document.querySelectorAll('span.weather-label')
   hideElements.forEach(element => {
@@ -41,7 +41,7 @@ const hideWeatherLabels = () => {
   })
 };
 
-//luodaan funktio joka tyhjentää nappia painamalla input kentän sekä lämpötilan ja tuulisuuden
+//funktio, joka tyhjentää nappia painamalla input kentän
 const clearButton = document.querySelector('#clear-button')
 
 clearButton.addEventListener('click', () => {
@@ -49,9 +49,11 @@ clearButton.addEventListener('click', () => {
   emptyInputPlace.value = ''
   temperatureElement.innerHTML = ''
   windElement.innerHTML = '' 
+
   //kutstutaan funktiota, joka piilottaa säätietokenttien nimet, kun tyhjennä-nappia painetaan
   hideWeatherLabels()
 });
+
 
 // funktio joka hakee syötetyn paikkakunnan sään toisesta rajapinnasta haetuilla koordinaateilla, kun painetaan nappia
 const button = document.querySelector('#button')
@@ -66,8 +68,8 @@ button.addEventListener('click', async () => {
     windElement.innerHTML = ''
     return
   }
-  //tässä tapauksessa oletataan, että koordinaatit lat.0 ja lon.0 ei ole oikeita, koska tässä koordinaatissa ei 
-  //kaupunkia
+  // oletataan, että koordinaatit lat.0 ja lon.0 ei ole oikeita, koska tässä koordinaatissa ei 
+  //tallenetaan muuttujaan coordinates getCoordinatesForPlace-funktion palauttamat paikkakunnan koordinaatit
   const coordinates = await getCoordinatesForPlace(input)
   if  (coordinates.lat === 0 && coordinates.lon === 0) {
     alert('Annetulle paikkakunnalle ei löytynyt säätietoja!')
@@ -83,21 +85,22 @@ button.addEventListener('click', async () => {
     return
   }
 
-  //kutsutaan funktiota showWeatherLabels
+  //kutsutaan funktiota, joka näyttää säätietokentät (lämpötila, tuulisuus) 
   showWeatherLabels()
 
-  //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi ennen tallenusta
+  //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi
   const upperInput =  input.charAt(0).toUpperCase() + input.slice(1)
 
+  //näytetään arvot käyttöliittymässä
+  nameElement.innerHTML = "Sää paikassa " + upperInput + ":"
   temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
   windElement.innerHTML = weatherData.wind + "m/s"
-  nameElement.innerHTML = "Sää paikassa " + upperInput + ":"
-
-  //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi
+ 
+  //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi localstorageen
   saveLocationToLocalStorage(upperInput)
 });
 
-//funktio joka tallentaa localstorageen paikannimen (max.5kpl ja tarkistaa että tätä ei vielä löydy sieltä)
+//funktio joka tallentaa localstorageen paikannimen (max.5kpl ja tarkistaa, että tätä ei vielä löydy sieltä)
 const saveLocationToLocalStorage = (locationName) => {
   const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
   if (!savedLocations.includes(locationName)){
@@ -106,10 +109,12 @@ const saveLocationToLocalStorage = (locationName) => {
   if (savedLocations.length > 5) {
     savedLocations.shift()
     }
+
   //tallennetaan päivitetty lista LocalStorageen
   localStorage.setItem("savedLocations", JSON.stringify(savedLocations))
   console.log(localStorage.getItem("savedLocations"))
-  //kutsutaan funktiota, joka näyttää localstorage historyn käyttöliittymässä
+
+  //kutsutaan funktiota, joka näyttää localstorage historian käyttöliittymässä
   showLocalStorageHistory()
 };
 
@@ -123,13 +128,11 @@ const showLocalStorageHistory = () => {
 };
 
 //https://www.w3schools.com/js/js_loop_forof.asp
-// https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
-// kuunnellaan domcontetloaded eventia ja käydään läpi kaikki ennaltamääritellyt paikat ja kaupungit
-// haetaan myös syötetylle paikkakunnalle lämpötila ja tuulisuus
-// DOMContentLoaded = kun sivu on valmis
-document.addEventListener("DOMContentLoaded", async () => {
+//funktio, joka lataa säädatan. käytetään async/wait -koodia verkkokutsun vuoksi
+const downloadTheData = async () => {
   const allWeatherData = []
   for (const value of predefinedWeatherLocations) {
+    //tallenetaan muuttujaan getWeatherForCoordinates-funktion rajapinnasta palauttamat säätiedot koordinaateille lat, lon
     const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
     const temperatureElement = document.querySelector('#temperature-'+value.name)
     const windElement = document.querySelector('#wind-'+value.name)
@@ -137,16 +140,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
     windElement.innerHTML = weatherData.wind + "m/s"
 
+    //lisätään paikkakunnan nimi (esim. name:"rovaniemi" ) ja lämpötila (temperature: -4.3)allWeatherData-nimiseen listaan, kylmimmän ja lämpimimmän paikkakunnan etsimiseksi
     allWeatherData.push({ "name": value.name, "temperature": weatherData.temperature })
   }
 
-// name:"rovaniemi"
-// temperature: -4.3
-
+//alustetaan kaksi taulukkoa, joissa kaksi tyhjää merkkijonoa
 const warmestLocation = ["", ""]
 const coldestLocation = ["", ""]
 
-//etsitään lämpimin ja kylmin paikkakunta sekä lämpötilat
+//etsitään lämpimin ja kylmin paikkakunta sekä näiden lämpötilat
   for (const location of allWeatherData) {
     if (warmestLocation[0] === "")  {
       warmestLocation[0] = location.name
@@ -170,7 +172,7 @@ const coldestLocation = ["", ""]
 
 //https://www.w3schools.com/jsref/jsref_touppercase.asp
 //https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/
-//ennen käyttöliittymään siirtämistä, muutetaan paikkakunnan alkukirjain isoksi
+//ennen käyttöliittymään siirtämistä, muutetaan paikkakunnan alkukirjain vielä isoksi
 const warmestLocationPlace = document.querySelector('#warmest-place')
 warmestLocationPlace.innerHTML = warmestLocation[0].charAt(0).toUpperCase() + warmestLocation[0].slice(1)
 const warmestLocationTemperatureElement = document.querySelector('#warmest-temperature')
@@ -183,7 +185,10 @@ coldestLocationTemperatureElement.innerHTML = coldestLocation[1] + "&deg;C"
 
 //kutsutaan localStorageHistory -funktiot, joka näyttää viimeisimmät localstorageeen tallennetut paikkakunnat
 showLocalStorageHistory()
-});
+};
+
+//kutsutaan funktiota, joka lataa säädatan
+downloadTheData();
 
 
 

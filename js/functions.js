@@ -1,4 +1,4 @@
-//funktio joka hakee rajapinnasta säätiedot koordinaateille lat, lon
+//funktio, joka hakee rajapinnasta säätiedot koordinaateille lat, lon
 //haetaan tiedot https://open-meteo.com/
 //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 const getWeatherForCoordinates = async (lat, lon) => {
@@ -18,7 +18,7 @@ const getWeatherForCoordinates = async (lat, lon) => {
   }
 };
 
-//funktio, joka hakee paikkakunnan koordinaatit ja palauttaa lat ja long
+//funktio, joka hakee paikkakunnan koordinaatit rajapinnasta ja palauttaa lat ja lon
 const getCoordinatesForPlace = async (place) => {
   const apiURL = "https://geocoding-api.open-meteo.com/v1/search?name=" + place + ",Finland&count=10&language=en&format=json"
   const response = await fetch(apiURL)
@@ -28,7 +28,7 @@ const getCoordinatesForPlace = async (place) => {
 
 //jos syötetään siansaksaa > konsolissa virhe > tehdään virheentarkistusta  
 //jos apilta ei saada vastausta, palautetaan koordinaateiksi nolla ja nolla. koordinaatit 0 ja 0 paikassa ei 
-//ole mitään kaupunkia, vaikka koordinaatti on oikea.
+//ole mitään kaupunkia, vaikka koordinaatti todellisuudessa on oikea.
   if (!jsonResponse || (jsonResponse && !jsonResponse.results)) {
     return {
       lat: 0,

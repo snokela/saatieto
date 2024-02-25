@@ -38,7 +38,10 @@ const europePredefinedWeatherLocations = [
 ];
 
 //https://www.w3schools.com/js/js_loop_forof.asp
-document.addEventListener("DOMContentLoaded", async (event) => {
+//https://www.geeksforgeeks.org/async-await-function-in-javascript/
+
+//Funktio, joka lataa säätiedot
+const downloadTheData = async () => {
   for (const value of europePredefinedWeatherLocations) {
     const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
 
@@ -48,4 +51,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
     windElement.innerHTML = weatherData.wind + "m/s"
   }
-});
+};
+
+//kutsutaan funktiota, joka lataa säätiedot
+downloadTheData();
