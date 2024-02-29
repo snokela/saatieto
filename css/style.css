@@ -9,11 +9,13 @@ aside {
     background-color: white;
 }
 
-/* TYYLIT */
+/* Headerin, navin ja footerin taustaväri*/
+.background-color {
+    background-color: #E2E9EE;
+}
 
 /* headerin tyylit */
 header {
-    background-color: #E2E9EE;
     height: 100px;
 }
 
@@ -26,12 +28,6 @@ header {
 
 footer {
     height: 150px;
-    background-color: #E2E9EE;
-}
-
-/* navin tyylit */
-nav {
-    background-color:  #E2E9EE;
 }
 
 /* etusivun kuvan muotoilu */
