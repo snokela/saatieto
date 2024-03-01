@@ -54,14 +54,17 @@ clearButton.addEventListener('click', () => {
   hideWeatherLabels()
 });
 
-
 // funktio joka hakee syötetyn paikkakunnan sään toisesta rajapinnasta haetuilla koordinaateilla, kun painetaan nappia
 const button = document.querySelector('#button')
+const form = document.querySelector('#formplace')
 const temperatureElement = document.querySelector('#temperature-output')
 const windElement = document.querySelector('#wind-output')
 const nameElement = document.querySelector('#place-weather-text')
 
-button.addEventListener('click', async () => {
+//lisätään tapahtumakäsittelijä lomakkeen submit-tapahtumalle 
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();  //estetään lomakkeen oletustoiminto
+  
   const input = document.querySelector('#inputplace').value
   if (input === '') {
     temperatureElement.innerHTML = ''
@@ -99,6 +102,52 @@ button.addEventListener('click', async () => {
   //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi localstorageen
   saveLocationToLocalStorage(upperInput)
 });
+
+
+// // funktio joka hakee syötetyn paikkakunnan sään toisesta rajapinnasta haetuilla koordinaateilla, kun painetaan nappia
+// const button = document.querySelector('#button')
+// const temperatureElement = document.querySelector('#temperature-output')
+// const windElement = document.querySelector('#wind-output')
+// const nameElement = document.querySelector('#place-weather-text')
+
+// button.addEventListener('click', async () => {
+//   const input = document.querySelector('#inputplace').value
+//   if (input === '') {
+//     temperatureElement.innerHTML = ''
+//     windElement.innerHTML = ''
+//     return
+//   }
+//   // oletataan, että koordinaatit lat.0 ja lon.0 ei ole oikeita, koska tässä koordinaatissa ei 
+//   //tallenetaan muuttujaan coordinates getCoordinatesForPlace-funktion palauttamat paikkakunnan koordinaatit
+//   const coordinates = await getCoordinatesForPlace(input)
+//   if  (coordinates.lat === 0 && coordinates.lon === 0) {
+//     alert('Annetulle paikkakunnalle ei löytynyt säätietoja!')
+//     return
+//   }
+
+//   const weatherData = await getWeatherForCoordinates(coordinates.lat, coordinates.lon)
+
+//   //jos säätietoja ei saatu haettua, tyhjennetään säätietokentät ja lopetetaan funktion suorittaminen
+//   if (!weatherData) {
+//     temperatureElement.innerHTML = ''
+//     windElement.innerHTML = ''
+//     return
+//   }
+
+//   //kutsutaan funktiota, joka näyttää säätietokentät (lämpötila, tuulisuus) 
+//   showWeatherLabels()
+
+//   //muutetaan syötetyn paikkakunnan ensimmäinen kirjain isoksi
+//   const upperInput =  input.charAt(0).toUpperCase() + input.slice(1)
+
+//   //näytetään arvot käyttöliittymässä
+//   nameElement.innerHTML = "Sää paikassa " + upperInput + ":"
+//   temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
+//   windElement.innerHTML = weatherData.wind + "m/s"
+ 
+//   //kutsutaan savetolocalstorage funktiota ja tallenetaan nimi localstorageen
+//   saveLocationToLocalStorage(upperInput)
+// });
 
 //funktio joka tallentaa localstorageen paikannimen (max.5kpl ja tarkistaa, että tätä ei vielä löydy sieltä)
 const saveLocationToLocalStorage = (locationName) => {
