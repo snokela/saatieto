@@ -1,4 +1,4 @@
-# SääTieto - web-sovellus
+# SääTieto -web-sovellus
 
 Tämä on web-sovellus säätietojen hakemiseen.
 

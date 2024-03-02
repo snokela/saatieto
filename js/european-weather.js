@@ -1,4 +1,4 @@
-//valmiiksi määritellyt euroopankaupungit
+//valmiiksi määritellyt euroopankaupungit ja niiden koordinaatit
 const europePredefinedWeatherLocations = [
   {
     "name": "tukholma",
@@ -35,12 +35,20 @@ const europePredefinedWeatherLocations = [
     "lat": "64.13548",
     "lon": "-21.89541"
   },
+  {
+    "name": "amsterdam",
+    "lat": "52.37403",
+    "lon": "4.88969"
+  },
+  {
+    "name": "varsova",
+    "lat": "52.22977",
+    "lon": "21.01178"
+  },
 ];
 
-//https://www.w3schools.com/js/js_loop_forof.asp
-//https://www.geeksforgeeks.org/async-await-function-in-javascript/
-
-//Funktio, joka lataa säätiedot
+//Funktio, joka lataa säätiedot kovakoodatuille kaupungeille. Tässä funktiossa kutsutaan funktiota joka hakee koordinaateille säätiedot
+const allWeatherData = []
 const downloadTheData = async () => {
   for (const value of europePredefinedWeatherLocations) {
     const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
@@ -50,7 +58,49 @@ const downloadTheData = async () => {
    
     temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
     windElement.innerHTML = weatherData.wind + "m/s"
+
+    //lisätään paikkakunnan nimi (esim. name:"reykjavik" ) ja lämpötila (temperature: -4.3)
+    //allWeatherData-nimiseen listaan, kylmimmän ja lämpimimmän paikkakunnan etsimiseksi
+    allWeatherData.push({ "name": value.name, "temperature": weatherData.temperature })
   }
+// };
+
+  //alustetaan kaksi taulukkoa, joissa kaksi tyhjää merkkijonoa
+  const warmestLocation = ["", ""]
+  const coldestLocation = ["", ""]
+
+  //etsitään lämpimin ja kylmin paikkakunta sekä näiden lämpötilat
+  for (const location of allWeatherData) {
+    if (warmestLocation[0] === "")  {
+      warmestLocation[0] = location.name
+      warmestLocation[1] = location.temperature
+    } else {
+      if (location.temperature > warmestLocation[1]) {
+        warmestLocation[0] = location.name
+        warmestLocation[1] = location.temperature
+      }
+    }
+    if (coldestLocation[0] === "")  {
+      coldestLocation[0] = location.name
+      coldestLocation[1] = location.temperature
+    } else {
+      if (location.temperature < coldestLocation[1]) {
+        coldestLocation[0] = location.name
+        coldestLocation[1] = location.temperature
+      }
+    }
+  }
+
+  //ennen käyttöliittymään siirtämistä, muutetaan paikkakunnan nimen alkukirjain vielä isoksi
+  const warmestLocationPlace = document.querySelector('#warmest-place')
+  warmestLocationPlace.innerHTML = warmestLocation[0].charAt(0).toUpperCase() + warmestLocation[0].slice(1)
+  const warmestLocationTemperatureElement = document.querySelector('#warmest-temperature')
+  warmestLocationTemperatureElement.innerHTML = warmestLocation[1] + "&deg;C"
+
+  const coldestLocationPlace = document.querySelector('#coldest-place')
+  coldestLocationPlace.innerHTML = coldestLocation[0].charAt(0).toUpperCase() + coldestLocation[0].slice(1)
+  const coldestLocationTemperatureElement = document.querySelector('#coldest-temperature')
+  coldestLocationTemperatureElement.innerHTML = coldestLocation[1] + "&deg;C"
 };
 
 //kutsutaan funktiota, joka lataa säätiedot
