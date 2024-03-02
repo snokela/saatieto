@@ -15,7 +15,7 @@
           <h1 class="header-title">SääTieto</h1>
         </div>
         <div>
-          <p>Päivän ennusteet yhdellä silmäyksellä!</p>
+          <p>Päivän sääennusteet yhdellä silmäyksellä!</p>
         </div>
       </div>
     </header>
@@ -37,20 +37,20 @@
         </div>
     </nav>
   </div>
-  <div class="mt-3">
+  <div class="container mt-4 mb-4">
     <div>
       <h5>Sivuston taustaa</h5>
       <p>SääTieto-sivusto on toteutettu Oulun ammattikorkeakoulun Web-ohjelmointi -kurssin loppuharjoitustyönä keväällä 2024.
         Nimi ja sivusto on itse keksitty ja kehitetty. Tämän sivuston ensisijainen tarkoitus oli opettaa ja kehittää
-        minun JavaScript -osaamista, joten tämän sivuston toteutus on suurimmalta osin painottunut varsinaiseen
+        JavaScript -osaamistani, joten tämän sivuston toteutus on suurimmalta osin painottunut varsinaiseen
         toiminnallisuuteen. 
       </p>
     </div>
     <div>
       <h5>Tekninen toteutus</h5>
       <p>Sivusto on toteutettu HTML5:llä, CSS:llä ja JavaScriptillä. Sivuston responsiivisuus ja tyylit on toteutettu pääsääntöisesti Bootstrap frameworkillä. Tämä
-        framework oli itselleni ihan uusi tuttavuus ennen tätä kurssia, joten halusin tässä kohtaa testata ja harjoitella tämän 
-        käyttöä myös tällä sivustolla. Sivuston toiminnallisuus, kuten hakutoiminnot, on toteutettu 
+        framework oli itselleni ihan uusi tuttavuus ennen tätä kurssia, joten halusin tässä sovelluksessa testata ja harjoitella tämän 
+        käyttöä. Sivuston toiminnallisuus, kuten hakutoiminnot, on toteutettu 
         niin ikään itselleni uudella kielellä, JavaScriptillä.
       </p>
     </div>
@@ -58,13 +58,12 @@
       <h5>Sisältö ja ominaisuudet</h5>
       <p>Sivustolta löytyy kolme eri sivua: etusivu, euroopan sää ja tietoa. Etusivu on sivuston pääsivu jossa on lyhyt esittely SääTieto-sivustosta. 
         Tältä sivulta löytyy haku-toiminto, mistä voi paikkakunnan nimen hakukenttään kirjoittamalla hakea kyseisen
-        paikkakunnan tämän hetkisen lämpötilan ja tuulisuuden. Hakutoiminto toimii Hae-nappia painamalla, jolloi hakutoiminnonn alla 
+        paikkakunnan tämän hetkisen lämpötilan ja tuulisuuden. Hakutoiminto toimii Hae-nappia tai enteriä painamalla, jolloi hakutoiminnonn alla 
         näytetään haetun paikkakunnan sää. Tyhjennä-nappia painamalla saadaan hakukenttä tyhjennettyä. Säätieto haetaan avoimesta rajapinnasta
         (<a href="https://open-meteo.com/" class="link-secondary">https://open-meteo.com/</a>). Lisäksi etusivulla näytetään neljän Suomen 
         kaupungin tämänhetkiset säätiedot. Nämä tiedot haetaan aina automaattisesti,kun sivu ladataan. Näistä neljästä 
         paikkakunnista näytetään lisäksi lämpimin ja kylmin paikkakunta. 
-        Ensimmäisellä sivulla on myös listattuna viimeksi haettuja paikkakuntia rajattuna näyttö viiteen
-        eri paikkakuntaan. Mikäli hakee samaa paikkakuntaa viisi kertaa peräkkäin, näytetään tämä vain yhden kerran. 
+        Ensimmäisellä sivulla on myös lista viidestä viimeksi haetusta eri paikkunnasta.
         Tämä tieto on tallennettu LocalStorageen. Sivulle on lisätty myös ChatGPT:n (<a href="https://chat.openai.com/" class="link-secondary">https://chat.openai.com/</a>)
         generoima SääTieto-sivuston aiheeseen liittyvä kuva.
       </p>
@@ -73,15 +72,15 @@
         Euroopan kaupungin lämpötila ja tuulisuus. Nämä tiedot haetaan aina automaattisesti avoimesta
         rajapinnasta (<a href="https://open-meteo.com/" class="link-secondary" class="link-secondary">https://open-meteo.com/</a>), kun sivu ladataan.
       </p>
-      <p>Tällä Tietoa-sivulla kerrotaan lyhyesti sivuston taustasta, toteutuksesta ja ominaisuuksista. Tämän sivun lopppuun on
+      <!-- <p>Tällä Tietoa-sivulla kerrotaan lyhyesti sivuston taustasta, toteutuksesta ja ominaisuuksista. Tämän sivun lopppuun on
         myös koottu mahdollisimman kattavasti sivuston kehittämisessä ja toteuttamisessa hyödynnettyjä lähdetietoja, mitä ilman
         tämä ivusto ei olisi varmasti koskaan valmistunut.
-      </p>
+      </p> -->
     </div>
     <div>
       <h5>Suunnittelu ja jatkokehitysideat</h5>
       <p>Sivuston suunnitteluun ja ulkoasuun ei tällä sivustolla ole niin hirveästi panostettu, vaan kuten aikaisemmin
-        mainitsin, sivustolla painotetaan toiminnallisuutta. Sivuston ulkoasussa olisi paljon kehitettävää ennen virallista
+        mainitsin, sivustolla painotetaan toiminnallisuutta. Sivuston ulkoasussa sekä tekstisisällössä olisi paljon kehitettävää ja korjattavaa ennen virallista
         julkaisemista. Sivusto on rakentunut nyt pala palalta ja näkisin, että selkeä suunnitelma alussa koko sivustosta 
         ja ulkoasusta olisivat mahdollistaneet hienomman ulkoasun. Mielessäni oli useita toiminnallisuuksia mitä olisin
         halunnut sivustolle vielä lisätä, mutta nämä jää jatkokehitysiedoiksi. Muutaman näistä mainitakseni: LocalStorageen
@@ -89,26 +88,6 @@
         olevat säätiedot päivitettäisiin tietyn väliajoin, mikäli sivu on pitkän aikaa auki. Myös muita toimintoja 
         nousi mieleen, mutta näitä jatkokehitysideoita päivittelen sivustolle myöhemmin.
       </p>
-    </div>
-    <div>
-      <h5>Lähteitä:</h5>
-      <ul>
-        <li><a href="https://open-meteo.com/" class="link-secondary">https://open-meteo.com/</a></li>
-        <li><a href="https://chat.openai.com/" class="link-secondary">https://chat.openai.com/</a></li>
-        <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" class="link-secondary">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></li>
-        <li><a href="https://getbootstrap.com/docs/5.3/layout/grid/" class="link-secondary">https://getbootstrap.com/docs/5.3/layout/grid/</a></li>        
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a></li>
-        <li><a href="https://appro.mit.jyu.fi/tiea2120/luennot/javascript_basics/#TOC22" class="link-secondary">https://appro.mit.jyu.fi/tiea2120/luennot/javascript_basics/#TOC22</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event</a></li>
-        <li><a href="https://www.w3schools.com/js/js_loop_forof.asp" class="link-secondary">https://www.w3schools.com/js/js_loop_forof.asp</a></li>
-        <li><a href="https://www.w3schools.com/" class="link-secondary">https://www.w3schools.com/</a></li>
-        <li><a href="https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/" class="link-secondary">https://sentry.io/answers/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/</a></li>
-        <li><a href="https://javascript.info/" class="link-secondary">https://javascript.info/</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event" class="link-secondary">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event</a></li>
-        <li><a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" class="link-secondary">https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax</a></li>
-        <li><a href="https://www.w3schools.com/js/js_errors.asp" class="link-secondary">https://www.w3schools.com/js/js_errors.asp</a></li>
-      </ul>
     </div>
   </div>
   <footer class="footer mt-auto background-color">

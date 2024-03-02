@@ -12,9 +12,9 @@ const predefinedWeatherLocations = [
     "lon": "25.46816"
   },
   {
-    "name": "jyvaskyla",
-    "lat": "62.24147",
-    "lon": "25.72088"
+    "name": "tampere",
+    "lat": "61.49911",
+    "lon": "23.78712"
   },
   {
     "name": "helsinki",
