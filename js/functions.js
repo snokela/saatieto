@@ -1,4 +1,4 @@
-//funktio, joka hakee suomalaisen paikkakunnan koordinaatit rajapinnasta ja palauttaa paikkakunnan lat ja lon
+//funktio, joka hakee paikkakunnan koordinaatit rajapinnasta ja palauttaa paikkakunnan lat ja lon
 //https://open-meteo.com/en/docs/geocoding-api/#name=tampere
 
 const getCoordinatesForPlace = async (place) => {
