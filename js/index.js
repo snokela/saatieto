@@ -17,7 +17,7 @@ const predefinedWeatherLocations = [
   },
   {
     "name": "helsinki",
-    "lat": "	60.16952",
+    "lat": "60.16952",
     "lon": "24.93545"
   }
 ];
