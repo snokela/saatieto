@@ -22,7 +22,7 @@ const predefinedWeatherLocations = [
   }
 ];
 
-//funktio, joka näyttää säätietokentät (lämpötila, tuulisuus) 
+//funktio, joka näyttää säätietokentät (nimi, lämpötila, tuulisuus) 
 const showWeatherLabels = () => {
   const elements = document.querySelectorAll('span.weather-label')
   elements.forEach(element => {
@@ -30,7 +30,7 @@ const showWeatherLabels = () => {
   })
 };
 
-//funktio, joka piilottaa säätietokenttien nimet (lämpötila, tuulisuus)
+//funktio, joka piilottaa säätietokentät (nimi, lämpötila, tuulisuus)
 const hideWeatherLabels = () => {
   const hideElements = document.querySelectorAll('span.weather-label')
   hideElements.forEach(element => {
@@ -49,12 +49,12 @@ clearButton.addEventListener('click', () => {
   temperatureElement.innerHTML = ''
   windElement.innerHTML = '' 
 
-  //kutstutaan funktiota, joka piilottaa säätietokenttien nimet, kun tyhjennä-nappia painetaan
+  //kutstutaan funktiota, joka piilottaa säätietokentän, kun tyhjennä-nappia painetaan
   hideWeatherLabels()
 });
 
-// funktio, joka hakee syötetyn paikkakunnan säätiedot rajapinnasta,  toisesta rajapinnasta haetuilla koordinaateilla
-// kun painetaan nappia tai enteriä
+// funktio, joka hakee syötetyn paikkakunnan koordinaatit ja säätiedot rajapinnasta
+// kun painetaan hae- nappia tai enteriä
 const button = document.querySelector('#button')
 const form = document.querySelector('#formplace')
 const temperatureElement = document.querySelector('#temperature-output')
@@ -130,12 +130,11 @@ const showLocalStorageHistory = () => {
   const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
   const locations = savedLocations.join(', ')
   const historyElement = document.querySelector('#weather-history')
-  historyElement.innerHTML = locations;
+  historyElement.innerHTML = locations
 };
 
-//funktio, joka lataa säädatan kovakoodatuille paikkakunnille. 
+//funktio, joka lataa säädatan kovakoodatuille paikkakunnille
 const downloadTheData = async () => {
-  // const allWeatherData = []
   for (const value of predefinedWeatherLocations) {
     //tallenetaan muuttujaan getWeatherForCoordinates-funktion rajapinnasta palauttamat säätiedot koordinaateille lat, lon
     const weatherData = await getWeatherForCoordinates(value.lat, value.lon)

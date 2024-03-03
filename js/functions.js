@@ -53,33 +53,3 @@ const getWeatherForCoordinates = async (lat, lon) => {
     console.log(error)
   }
 };
-
-//funktio, joka hakee suomalaisen paikkakunnan koordinaatit rajapinnasta ja palauttaa paikkakunnan lat ja lon
-//https://open-meteo.com/en/docs/geocoding-api/#name=tampere
-
-// const getCoordinatesForPlace = async (place) => {
-//   const apiURL = "https://geocoding-api.open-meteo.com/v1/search?name=" + place + ",Finland&count=10&language=en&format=json"
-//   try {
-//     const response = await fetch(apiURL)
-//     if (response.ok) {
-//       const jsonResponse = await response.json()
-
-//       return {
-//         lat: jsonResponse.results[0].latitude,
-//         lon: jsonResponse.results[0].longitude,
-//         // palautetaan ensimmäisen vastauksen lat ja lon
-//       }
-//     } else {
-//       return {
-//         lat: 0,
-//         lon: 0
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     return {
-//       lat: 0,
-//       lon: 0
-//     }
-//   }
-// };

@@ -63,7 +63,6 @@ const downloadTheData = async () => {
     //allWeatherData-nimiseen listaan, kylmimmän ja lämpimimmän paikkakunnan etsimiseksi
     allWeatherData.push({ "name": value.name, "temperature": weatherData.temperature })
   }
-// };
 
   //alustetaan kaksi taulukkoa, joissa kaksi tyhjää merkkijonoa
   const warmestLocation = ["", ""]
@@ -91,7 +90,7 @@ const downloadTheData = async () => {
     }
   }
 
-  //ennen käyttöliittymään siirtämistä, muutetaan paikkakunnan nimen alkukirjain vielä isoksi
+  //ennen käyttöliittymässä näyttämistä, muutetaan paikkakunnan nimen alkukirjain isoksi
   const warmestLocationPlace = document.querySelector('#warmest-place')
   warmestLocationPlace.innerHTML = warmestLocation[0].charAt(0).toUpperCase() + warmestLocation[0].slice(1)
   const warmestLocationTemperatureElement = document.querySelector('#warmest-temperature')
