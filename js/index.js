@@ -22,7 +22,20 @@ const predefinedWeatherLocations = [
   }
 ];
 
-//funktio, joka näyttää säätietokentät (nimi, lämpötila, tuulisuus) 
+//funktio, joka lataa säädatan kovakoodatuille paikkakunnille
+const downloadTheData = async () => {
+  for (const value of predefinedWeatherLocations) {
+    //tallenetaan muuttujaan getWeatherForCoordinates-funktion rajapinnasta palauttamat säätiedot koordinaateille lat, lon
+    const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
+    const temperatureElement = document.querySelector('#temperature-'+value.name)
+    const windElement = document.querySelector('#wind-'+value.name)
+   
+    temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
+    windElement.innerHTML = weatherData.wind + "m/s"
+  }
+};
+
+//funktio, joka näyttää haetun paikkakunnan säätietokentät (nimi, lämpötila, tuulisuus) 
 const showWeatherLabels = () => {
   const elements = document.querySelectorAll('span.weather-label')
   elements.forEach(element => {
@@ -133,24 +146,11 @@ const showLocalStorageHistory = () => {
   historyElement.innerHTML = locations
 };
 
-//funktio, joka lataa säädatan kovakoodatuille paikkakunnille
-const downloadTheData = async () => {
-  for (const value of predefinedWeatherLocations) {
-    //tallenetaan muuttujaan getWeatherForCoordinates-funktion rajapinnasta palauttamat säätiedot koordinaateille lat, lon
-    const weatherData = await getWeatherForCoordinates(value.lat, value.lon)
-    const temperatureElement = document.querySelector('#temperature-'+value.name)
-    const windElement = document.querySelector('#wind-'+value.name)
-   
-    temperatureElement.innerHTML = weatherData.temperature + "&deg;C"
-    windElement.innerHTML = weatherData.wind + "m/s"
-  }
-};
-
 //kutsutaan localStorageHistory -funktiot, joka näyttää viimeisimmät localstorageeen tallennetut paikkakunnat
 showLocalStorageHistory()
 
 //kutsutaan funktiota, joka lataa säädatan
-downloadTheData();
+downloadTheData()
 
 
 
