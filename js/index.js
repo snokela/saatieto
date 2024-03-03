@@ -138,7 +138,7 @@ const saveLocationToLocalStorage = (locationName) => {
   showLocalStorageHistory()
 };
 
-//funktio joka näyttää localstorageen tallennetun tiedon
+//funktio, joka näyttää localstorageen tallennetun tiedon käyttöliittymässä
 const showLocalStorageHistory = () => {
   const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
   const locations = savedLocations.join(', ')
